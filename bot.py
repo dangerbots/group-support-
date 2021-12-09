@@ -71,7 +71,10 @@ async def main_handler(bot, message):
     a_id = message.sender_chat.id
     if (await whitelist_check(chat_id, a_id)):
         return
-    res = await bot.kick_chat_member(chat_id, a_id)
+    try:
+        res = await bot.kick_chat_member(chat_id, a_id)
+    except:
+        return await message.reply_text("Promote me as admin, to use me")
     if res:
         mention = f"@{message.sender_chat.username}" if message.sender_chat.username else message.chat_data.title
         await message.reply_text(text=f"{mention} has been banned.\n\n💡 He can write only with his profile but not through other channels.",
