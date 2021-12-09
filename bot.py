@@ -80,7 +80,7 @@ async def main_handler(bot, message):
     await message.delete()
 
 
-@JV_BOT.on_message(filters.command(["start"]))
+@JV_BOT.on_message(filters.command(["start"]) & filters.private)
 async def start_handler(bot, message):
     await message.reply_text(text="""Hey! Just add me to the chat, and I will block the channels that write to the chat,
 
@@ -89,7 +89,7 @@ check /help for more.""",
                                                                  InlineKeyboardButton("Support Group", url=f"https://t.me/JV_Community")]]),
                              disable_web_page_preview=True)
 
-@JV_BOT.on_message(filters.command(["help"]))
+@JV_BOT.on_message(filters.command(["help"]) & filters.private)
 async def help_handler(bot, message):
     await message.reply_text(text="""/ban [channel_id] : ban channel from sending message as channel.
 /unban [channel_id] : unban channel from sending message as channel.
@@ -123,7 +123,7 @@ async def cb_handler(bot, query):
             await query.message.reply_text(f"{mention} has been unbanned by {query.from_user.mention}")
             await query.message.edit_reply_markup(reply_markup=None)
 
-@JV_BOT.on_message(filters.command(["ban"]))
+@JV_BOT.on_message(filters.command(["ban"]) & filters.group)
 async def cban_handler(bot, message):
     chat_id = message.chat.id
     user = await bot.get_chat_member(message.chat.id, message.from_user.id)
@@ -150,7 +150,7 @@ async def cban_handler(bot, message):
     except Exception as e:
         print(e)
 
-@JV_BOT.on_message(filters.command(["unban"]))
+@JV_BOT.on_message(filters.command(["unban"]) & filters.group)
 async def uncban_handler(bot, message):
     chat_id = message.chat.id
     user = await bot.get_chat_member(message.chat.id, message.from_user.id)
@@ -177,7 +177,7 @@ async def uncban_handler(bot, message):
         await message.reply_text(e)
 
 
-@JV_BOT.on_message(filters.command(["add_whitelist"]))
+@JV_BOT.on_message(filters.command(["add_whitelist"]) & filters.group)
 async def add_whitelist_handler(bot, message):
     chat_id = message.chat.id
     user = await bot.get_chat_member(chat_id, message.from_user.id)
@@ -200,7 +200,7 @@ async def add_whitelist_handler(bot, message):
         print(e)
 
 
-@JV_BOT.on_message(filters.command(["del_whitelist"]))
+@JV_BOT.on_message(filters.command(["del_whitelist"]) & filters.group)
 async def del_whitelist_handler(bot, message):
     chat_id = message.chat.id
     user = await bot.get_chat_member(chat_id, message.from_user.id)
@@ -223,7 +223,7 @@ async def del_whitelist_handler(bot, message):
         print(e)
 
 
-@JV_BOT.on_message(filters.command(["show_whitelist"]))
+@JV_BOT.on_message(filters.command(["show_whitelist"]) & filters.group)
 async def del_whitelist_handler(bot, message):
     chat_id = message.chat.id
     user = await bot.get_chat_member(chat_id, message.from_user.id)
