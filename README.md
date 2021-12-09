@@ -1,4 +1,4 @@
-# Captcha-Pro-Bot
+# Anti-Channel-bot
 A Telegram AntiChannel bot to ban users who using channel to send message in group.
 
 ### BOT LINK:
