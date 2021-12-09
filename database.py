@@ -13,10 +13,10 @@ class Database:
         get_chat = await self.is_chat_exist(chat_id)
         if get_chat:
             chat_list = list(get_chat.get("chats"))
-            if ch_id in chat_list:
+            if ch_id != None and int(ch_id) in chat_list:
                 return True, f"{ch_id} already in white list."
             elif ch_id is not None:
-                chat_list.append(ch_id)
+                chat_list.append(int(ch_id))
                 await self.col.update_one({'id': chat_id}, {'$set': {'chats': chat_list}})
                 return True, f"{ch_id}, added into white list"
         a_chat = {"id":int(chat_id),"chats":[ch_id]}
@@ -38,11 +38,11 @@ class Database:
         get_chat = await self.is_chat_exist(chat_id)
         if get_chat:
             chat_list = list(get_chat.get("chats"))
-            if ch_id in chat_list:
-                chat_list.remove(ch_id)
+            if ch_id != None and ch_id in chat_list:
+                chat_list.remove(int(ch_id))
                 await self.col.update_one({'id': chat_id}, {'$set': {'chats': chat_list}})
                 return True, f"{ch_id}, removed from white list"
-            elif ch_id not in chat_list:
+            elif int(ch_id) not in chat_list:
                 return True, f"{ch_id}, not found in white list."
 
    
