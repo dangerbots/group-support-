@@ -1,6 +1,4 @@
 pyrogram
-asyncio
 dnspython
-pymongo
 tgcrypto
 motor
