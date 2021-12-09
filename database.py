@@ -14,7 +14,7 @@ class Database:
         if get_chat:
             chat_list = list(get_chat.get("chats"))
             if ch_id in chat_list:
-                return True, "{ch_id} already in white list."
+                return True, f"{ch_id} already in white list."
             elif ch_id is not None:
                 chat_list.append(ch_id)
                 await self.col.update_one({'id': chat_id}, {'$set': {'chats': chat_list}})
