@@ -92,7 +92,7 @@ check /help for more.""",
 @JV_BOT.on_message(filters.command(["help"]))
 async def help_handler(bot, message):
     await message.reply_text(text="""/ban [channel_id] : ban channel from sending message as channel.
-unban [channel_id] : unban channel from sending message as channel.
+/unban [channel_id] : unban channel from sending message as channel.
 /add_whitelist [channel_id] : add channel into whitelist and protect channel for automatic actions.
 /del_whitelist [channel_id] : remove channel from whitelist.
 /show_whitelist : Show all white list channels.
